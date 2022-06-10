@@ -5,28 +5,28 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 
+
+
+// set up independant route for navbar and application
+
 export const App = () => (
     <>
-        <Route render={() => {
+        {/* <Route render={() => {
             if (localStorage.getItem("auth_token")) {
                 return <>
-                    <Route>
-                        <NavBar />
-                        <ApplicationViews />
-                    </Route>
+
                 </>
             } else {
-                return <Redirect to="/login" />
+                return <Redirect to="/home" />
             }
-        }} />
+        }} /> */}
 
-        <Route path="/login">
-            <Login />
+        <Route>
+            <NavBar />
+            <ApplicationViews />
         </Route>
 
-        <Route path="/register">
-            <Register />
-        </Route>
+     
 
     </>
 )
