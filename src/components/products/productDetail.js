@@ -20,7 +20,7 @@ export const ProductDetails = () => {
     console.log(selectedProduct)
 
     return <>
-        <Box sx={{ display: "flex", minHeight: '70vh', mr: 10, ml: 10, mt: 4, background: "grey" }}>
+        <Box sx={{ display: "flex", minHeight: '70vh', mr: 10, ml: 10, mt: 4 }}>
             <Grid sx={{ mb: 5 }} container direction="row" spacing={0}>
 
                 <Grid item>
@@ -31,8 +31,7 @@ export const ProductDetails = () => {
                 </Grid>
 
                 <Grid xs={12} sm={6} md={6} lg={6} item>
-                    <Box
-                        sx={{ minHeight: '70vh', ml: 5, mr: 2, mt: 4, background: 'green' }}>
+                    <Box sx={{ minHeight: '70vh', ml: 5, mr: 2, mt: 4 }}>
                         <Typography variant="h3"
                             component="div"
                             sx={{ letterSpacing: 5, flexGrow: 1 }}>
@@ -45,64 +44,91 @@ export const ProductDetails = () => {
                             $ {selectedProduct.price}
                         </Typography>
 
-                        <Box sx={{ mr: 5, display: "flex", gap: 1, alignItems: "center", mt: 15 }} >
-
+                        <Box sx={{ mr: 5, display: "flex", gap: 1, alignItems: "center", mt: 10 }} >
                             <Typography variant="h4"
                                 component="div"
                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
                                 SIZE:
                             </Typography>
 
-                            <Button variant="outlined" sx={{background: "black"}}>
-                            <Typography sx={{letterSpacing: 5, color: "white"}}>
-                                S
-                            </Typography>
+                            <Button variant="outlined" sx={{ background: "black" }}>
+                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                    S
+                                </Typography>
                             </Button>
 
-                            <Button variant="outlined" sx={{background: "black"}}>
-                            <Typography sx={{letterSpacing: 5, color: "white"}}>
-                                M
-                            </Typography>
+                            <Button variant="outlined" sx={{ background: "black" }}>
+                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                    M
+                                </Typography>
                             </Button>
 
-                            <Button variant="outlined" sx={{background: "black"}}>
-                            <Typography sx={{letterSpacing: 5, color: "white"}}>
-                                L
-                            </Typography>
+                            <Button variant="outlined" sx={{ background: "black" }}>
+                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                    L
+                                </Typography>
                             </Button>
 
-                            <Button variant="outlined" sx={{background: "black"}}>
-                            <Typography sx={{letterSpacing: 5, color: "white"}}>
-                                XL
-                            </Typography>
+                            <Button variant="outlined" sx={{ background: "black" }}>
+                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                    XL
+                                </Typography>
                             </Button>
 
-                            <Button variant="outlined" sx={{background: "black"}}>
-                            <Typography sx={{letterSpacing: 5, color: "white"}}>
-                                XXL
-                            </Typography>
+                            <Button variant="outlined" sx={{ background: "black" }}>
+                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                    XXL
+                                </Typography>
                             </Button>
+                        </Box>
 
-                        
-                            <Grid xs={12} sm={12} md={12} lg={12} item>
-
-                            <Box sx={{mr: 5, display: "flex", gap: 1, alignItems: "center", mt: 5}}>
-                                <Button variant="outlined" sx={{background: "black"}}>
+                        <Box sx={{ display: "flex", justifyContent: "center", gap: 10, alignItems: "center", mt: 5 }} >
+                            <Button variant="outlined" sx={{ background: "black" }}>
+                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
                                     Buy Now
-                                </Button>
-                            </Box>
+                                </Typography>
+                            </Button>
 
-                            </Grid>
-                                        
-                            
+                            <Button variant="outlined" sx={{ background: "black" }}>
+                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                    Add 2 Cart
+                                </Typography>
+                            </Button>
+                        </Box>
+
+                        <Box sx={{ display: "flex", justifyContent: "center", gap: 10, alignItems: "center", mt: 10 }} >
+                            <Typography variant="h4"
+                                component="div"
+                                sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                    Description:
+                            </Typography>
+                        </Box>
+
+                        <Box sx={{ display: "flex", justifyContent: "center", gap: 10, alignItems: "center", mt: 2 }} >
+                            <Typography variant="h5"
+                                component="div"
+                                sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                    All of our hoodies are conveniently sourced and made locally in China
+                            </Typography>
+                        </Box>
+
+
+
+
+
+
+
+
+
                     </Box>
-                </Box>
+
+
+                </Grid>
+
+
             </Grid>
 
-
-        </Grid>
-
-    </Box>
+        </Box>
 
     </>
 
