@@ -7,4 +7,14 @@ export const getProducts = () => {
         .then(response => response.json())
 }
 
-console.log(getProducts)
+
+
+export const getProductById = (productId) => {
+    return fetch(`http://localhost:8000/products/${productId}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("auth_token")}`
+        }
+    })
+    .then(res => res.json())
+}
+
