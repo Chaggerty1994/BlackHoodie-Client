@@ -40,11 +40,11 @@ export const ProductDetails = () => {
 
                         <Typography variant="h4"
                             component="div"
-                            sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                            sx={{ letterSpacing: 5, flexGrow: 1, mt: 2 }}>
                             $ {selectedProduct.price}
                         </Typography>
 
-                        <Box sx={{ mr: 5, display: "flex", gap: 1, alignItems: "center", mt: 10 }} >
+                        <Box sx={{ mr: 5, display: "flex", gap: 1, alignItems: "center", mt: 8 }} >
                             <Typography variant="h4"
                                 component="div"
                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
@@ -82,7 +82,7 @@ export const ProductDetails = () => {
                             </Button>
                         </Box>
 
-                        <Box sx={{ display: "flex", justifyContent: "center", gap: 10, alignItems: "center", mt: 5 }} >
+                        <Box sx={{ display: "flex", justifyContent: "left", gap: 5, alignItems: "center", mt: 8 }} >
                             <Button variant="outlined" sx={{ background: "black" }}>
                                 <Typography sx={{ letterSpacing: 5, color: "white" }}>
                                     Buy Now
@@ -96,7 +96,7 @@ export const ProductDetails = () => {
                             </Button>
                         </Box>
 
-                        <Box sx={{ display: "flex", justifyContent: "center", gap: 10, alignItems: "center", mt: 10 }} >
+                        <Box sx={{ display: "flex", justifyContent: "center", gap: 10, alignItems: "center", mt: 8 }} >
                             <Typography variant="h4"
                                 component="div"
                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
@@ -111,23 +111,9 @@ export const ProductDetails = () => {
                                     All of our hoodies are conveniently sourced and made locally in China
                             </Typography>
                         </Box>
-
-
-
-
-
-
-
-
-
                     </Box>
-
-
                 </Grid>
-
-
             </Grid>
-
         </Box>
 
     </>
