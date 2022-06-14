@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, IconButton, Typography } from "@mui/material"
+import { Button, Card, Divider, Grid, IconButton, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
@@ -24,10 +24,12 @@ export const ProductDetails = () => {
             <Grid sx={{ mb: 5 }} container direction="row" spacing={0}>
 
                 <Grid item>
+                    
                     <Box component="img"
                         elevation={15}
                         sx={{ minHeight: '70vh', ml: 13, mt: 4 }}
                         src={`http://localhost:8000${selectedProduct.image_path}`} />
+                
                 </Grid>
 
                 <Grid xs={12} sm={6} md={6} lg={6} item>

@@ -1,13 +1,16 @@
 import { Button, Card, Divider, Grid, IconButton, ImageListItemBar, Stack, Typography } from "@mui/material"
 import { Box, Container } from "@mui/system"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { getProducts } from "./productManager";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import { CartContext } from "./cartContext";
+
 
 export const Products = () => {
+
     const [products, setProducts] = useState([])
 
     const loadProducts = () => {
@@ -18,8 +21,10 @@ export const Products = () => {
         loadProducts()
     }, [])
 
+    const {cart, setCart, productToCart} = useContext(CartContext)
+
     return <>
-        <Box sx={{ display: "flex", minHeight: '80vh', mr: 10, ml: 10, mt: 4 }}>
+        <Box sx={{ display: "flex", minHeight: '80vh', mr: 5, ml: 5, mt: 4 }}>
             <Box sx={{ minHeight: '80vh', width: '20%' }}>
                 <Grid
                     sx={{ mb: 5 }}
@@ -85,7 +90,9 @@ export const Products = () => {
                                     sx={{ background: "black", fontColor: "white", fontSize: "30px",opacity: "100%" }}
                                     title={`${product.title} - $${product.price}`}
                                     actionIcon={
+                                        <IconButton onClick={()=>{productToCart(product)}}>
                                         <LocalMallIcon sx={{color:'white', mr: 2}}/>
+                                        </IconButton>
                                     }
                                     position='bottom' />
                             </ImageListItem>

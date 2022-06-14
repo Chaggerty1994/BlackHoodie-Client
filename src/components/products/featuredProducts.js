@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Box from '@mui/material/Box';
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Card, Grid, IconButton, ImageListItemBar, Typography } from "@mui/material";
 import { getProducts } from "./productManager";
 import { Link } from "react-router-dom";
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import { CartContext } from "./cartContext";
 
 
 export const FeaturedProduct = () => {
@@ -17,6 +21,8 @@ export const FeaturedProduct = () => {
         loadProducts()
     }, [])
     console.log(products)
+
+    const { cart, setCart, productToCart } = useContext(CartContext)
 
     return <>
         <Box sx={{ minHeight: '60vh', mr: 15, ml: 15, mt: 4 }}>
@@ -39,36 +45,41 @@ export const FeaturedProduct = () => {
                 </Grid>
 
             </Grid>
-            <Grid sx={{ mb: 5 }} container spacing={2} >
-                {
-                    products.map(product => {
-                        return <>
-                            <Grid xs={12} sm={6} md={6} lg={3} item>
+            <Box sx={{ minHeight: '40vh', width: '100%', ml: 3, mr: 3, justifyContent: "center" }}>
+                <ImageList cols={4}
+                    sx={{ gridTemplateColumns: 'repeat(autofill, minman(280px, 1fr)) !important' }}>
+                    {products.slice(0, 4).map(product => (
+                        <Card key={product.id}>
+                            <ImageListItem sx={{ height: '100% !impotant' }} >
                                 <Link to={`/products/${product.id}`}>
-                                <Box component="img" src={`http://localhost:8000${product.image_path}`} />
+
+                                    <img src={`http://localhost:8000${product.image_path}`}
+                                        loading="lazy"
+                                    />
                                 </Link>
-                                <Box sx={{ display: "flex", mt: 2, justifyContent: "center", alignItems: "center" }} >
-                                    <Typography>{product.title}</Typography>
-                                </Box>
-                                <Box sx={{ display: "flex", mt: 2, justifyContent: "center", alignItems: "center" }} >
-                                    <Typography>$ {product.price}</Typography>
-                                </Box>
-                            </Grid>
+                                <ImageListItemBar
+                                    sx={{ background: "black", fontColor: "white", fontSize: "30px", opacity: "100%" }}
+                                    title={`${product.title} - $${product.price}`}
+                                    actionIcon={
+                                        <IconButton onClick={() => { productToCart(product) }}>
+                                            <LocalMallIcon sx={{ color: 'white', mr: 2 }} />
+                                        </IconButton>
+                                    }
+                                    position='bottom' />
+                            </ImageListItem>
+                        </Card>
+                    ))}
+                </ImageList>
 
-                        </>
-                    }
 
-                    )
-                }
-
-            </Grid>
+            </Box>
             <Grid xs={12} sm={12} md={12} lg={12} item>
                 <Box sx={{ display: "flex", mt: 5, justifyContent: "center", alignItems: "center" }}>
                     <Link to="/products">
-                    <Button variant="outlined"
-                    sx={{ background: "black" }}>
-                        <Typography sx={{ letterSpacing: 5, color: "white" }}> All Designs</Typography>
-                    </Button>
+                        <Button variant="outlined"
+                            sx={{ background: "black" }}>
+                            <Typography sx={{ letterSpacing: 5, color: "white" }}> All Designs</Typography>
+                        </Button>
                     </Link>
                 </Box>
             </Grid>
