@@ -4,9 +4,14 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { Home } from "./Home/home"
 import { Cart } from "./orders/cart"
+import { OrderReview } from "./orders/orderReview"
+import { PaymentDetails } from "./orders/paymentDetails"
+import { ShippingDetails } from "./orders/shippingDetails"
+import { ThankYou } from "./orders/thanks4biz"
 import { Products } from "./products/allProducts"
 import { CartContext } from "./products/cartContext"
 import { ProductDetails } from "./products/productDetail"
+import { UserAccount } from "./userAccount/user"
 
 const cartFromStorage = JSON.parse(localStorage.getItem("cart") || "[]" )
 
@@ -48,6 +53,26 @@ export const ApplicationViews = () => {
 
             <Route exact path="/cart">
                 <Cart />
+            </Route>
+
+            <Route exact path="/shipping">
+                <ShippingDetails />
+            </Route>
+
+            <Route exact path="/payment">
+                <PaymentDetails />
+            </Route>
+
+            <Route exact path="/orderreview">
+                <OrderReview />
+            </Route>
+
+            <Route exact path="/thankyou">
+                <ThankYou />
+            </Route>
+
+            <Route exact path="/account">
+                <UserAccount />
             </Route>
 
 

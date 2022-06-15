@@ -83,11 +83,13 @@ export const Products = () => {
                     {products.map(product => (
                         <Card key={product.id}>
                             <ImageListItem sx={{ height: '100% !impotant' }} >
+                                <Link to={`/products/${product.id}`}>
                                 <img src={`http://localhost:8000${product.image_path}`}
                                     loading="lazy"
                                 />
+                                </Link>
                                 <ImageListItemBar
-                                    sx={{ background: "black", fontColor: "white", fontSize: "30px",opacity: "100%" }}
+                                    sx={{ letterSpacing: 5,background: "black", fontColor: "white", fontSize: "30px",opacity: "100%" }}
                                     title={`${product.title} - $${product.price}`}
                                     actionIcon={
                                         <IconButton onClick={()=>{productToCart(product)}}>
