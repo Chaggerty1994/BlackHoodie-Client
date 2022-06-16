@@ -1,32 +1,10 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export const UserAccount = () => {
 
-    // const [currentUser, setCurrentUser] = useState({})
-
-    // const userId = localStorage.getItem("auth_user")
-
-    // console.log(userId)
-
-
-    // useEffect(
-    //     () => {
-    //         fetch("http://localhost:8000/user", {
-    //             headers: {
-    //                 "Authorization": `Token ${localStorage.getItem("auth_token")}`
-    //             }
-    //         })
-    //             .then(res => res.json())
-    //             .then((usersArray) => {
-    //                 const userNow = usersArray.find(
-    //                     u => u.id === parseInt(userId))
-    //                 console.log(userNow)
-    //                 setCurrentUser(userNow)
-    //             })
-    //     }, []
-    // )
+   
 
     return <>
         <Box sx={{ minHeight: '70vh', mr: 15, ml: 15, mt: 8, background: "grey" }}>
@@ -35,6 +13,7 @@ export const UserAccount = () => {
                 container
                 spacing={2}
                 direction="column"
+                alignItems="center"
                 justifyContent="center"
             >
                 <Grid xs={12} sm={12} md={12} lg={12} item>
@@ -56,9 +35,14 @@ export const UserAccount = () => {
                 </Grid>
                 <Grid xs={12} sm={12} md={12} lg={12} item>
                     <Box sx={{ display: "flex", mt: 2, ml: 3, justifyContent: "left", alignItems: "center" }} >
-
+                        <Typography variant="h5"
+                            component="div"
+                            sx={{ letterSpacing: 5, flexGrow: 1 }}>SPOOKY
+                        </Typography>
                     </Box>
                 </Grid>
+
+                <Divider sx={{ border: 1, ml: 4, mr: 80, mt: 2 }} />
 
                 <Grid xs={12} sm={12} md={12} lg={12} item>
                     <Box sx={{ display: "flex", mt: 8, ml: 3, justifyContent: "left", alignItems: "center" }} >

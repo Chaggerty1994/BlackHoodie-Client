@@ -45,12 +45,12 @@ export const FeaturedProduct = () => {
                 </Grid>
 
             </Grid>
-            <Box sx={{ minHeight: '40vh', width: '100%', ml: 3, mr: 3, justifyContent: "center" }}>
+            <Box sx={{ minHeight: '40vh', width: '100%', ml: 3, mr: 3, justifyContent: "center" }} elevation={15}>
                 <ImageList cols={4}
                     sx={{ gridTemplateColumns: 'repeat(autofill, minman(280px, 1fr)) !important' }}>
                     {products.slice(0, 4).map(product => (
                         <Card key={product.id}>
-                            <ImageListItem sx={{ height: '100% !impotant' }} >
+                            <ImageListItem sx={{ height: '100% !impotant' }}  >
                                 <Link to={`/products/${product.id}`}>
 
                                     <img src={`http://localhost:8000${product.image_path}`}

@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from "react"
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { TextField } from '@mui/material';
 import { Link } from "react-router-dom";
+import { CartContext } from "../products/cartContext"
+import { useHistory } from "react-router-dom";
 
 export const OrderReview = () => {
-
+    const history = useHistory()
+    const { cart, setCart, productToCart, currentPayment, setCurrentPayment, currentOrder, setCurrentOrder  } = useContext(CartContext)
     return <>
         <Box sx={{ minHeight: '70vh', mr: 15, ml: 15, mt: 8 }}>
             <Grid
@@ -34,7 +37,7 @@ export const OrderReview = () => {
                 <Grid xs={12} sm={12} md={6} lg={6} item>
                     <Box sx={{ display: "flex", mt: 1, ml: 3, justifyContent: "left", alignItems: "center" }} >
                         <Typography>
-                            ADDRESS
+                            {currentOrder.address}
                         </Typography>
                     </Box>
                 </Grid>

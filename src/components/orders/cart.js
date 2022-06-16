@@ -22,9 +22,16 @@ export const Cart = () => {
     }
 
     const handleTax = () => {
-        let tax = (orderPrice * 10) / 100;
+        let tax = (orderPrice * 4) / 100;
         setOrderTax(tax)
-        setOrderShipping(tax)
+
+        console.log(orderTax)
+    }
+
+    const handleShipping = () => {
+        let shipping = (orderPrice * 10) / 100;
+        setOrderShipping(shipping)
+
         console.log(orderTax)
     }
 
@@ -41,6 +48,7 @@ export const Cart = () => {
 
     useEffect(() => { handlePrice() })
     useEffect(() => { handleTax() })
+    useEffect(() => { handleShipping() })
     useEffect(() => { handleGrandTotal() })
 
     console.log(orderPrice)
@@ -62,7 +70,7 @@ export const Cart = () => {
                             My Cart
                         </Typography>
                     </Box>
-                    <Paper sx={{ display: "flex", minHeight: "63vh", maxHeight: "63vh", overflow: "auto", mt: 0, mr: 2 }}>
+                    <Paper elevation={10} sx={{ display: "flex", minHeight: "63vh", maxHeight: "63vh", overflow: "auto", mt: 0, mr: 2 }}>
                         <Grid container direction="row" spacing={0}>
                             {
                                 cart.map(cartItem => (
@@ -70,7 +78,7 @@ export const Cart = () => {
                                         <Card sx={{ display: "flex", direction: "row", height: "20vh", width: "99%", mb: 1, border: 1, flexGrow: 1 }}>
 
                                             <Box sx={{ mr: 2, ml: 2, mt: 2, mb: 2, }} component="img" src={`http://localhost:8000${cartItem.image_path}`} />
-                                            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                                            <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h4" component="div" sx={{ letterSpacing: 5 }}>
                                                         {cartItem.title}
@@ -83,8 +91,8 @@ export const Cart = () => {
 
                                                     <Box sx={{ display: "flex", direction: "row", justifyContent: "right", alignItems: "center" }}>
                                                         <Button variant="outlined"
-                                                            sx={{ background: "black" }}
-                                                            onClick={() => {handleRemove(cartItem.id)}}>
+                                                            sx={{ background: "black", mr: 4 }}
+                                                            onClick={() => { handleRemove(cartItem.id) }}>
                                                             <Typography sx={{ letterSpacing: 5, color: "white" }}> Remove </Typography>
                                                         </Button>
 
@@ -104,65 +112,75 @@ export const Cart = () => {
 
                 <Grid xs={12} sm={3} md={3} lg={3} item>
                     <Box sx={{ display: "flex", minHeight: '41.5vh', mt: 10 }}>
-                        <Paper sx={{ display: "flex", width: "100%", mt: 0, mr: 2, border: 1 }}>
-                            <Box sx={{ ml: 1, mr: 1 }}>
-                                <Grid
-                                    sx={{}}
-                                    container
-                                    spacing={2}
-                                    direction="column"
-                                    alignItems="left"
-                                    justifyContent="center"
-                                >
-                                    <Box sx={{ display: "flex", direction: "column", justifyContent: "space-between", mt: 3, ml: 2, mr: 2, background: "yellow" }}>
-                                        <Typography variant="h5"
-                                            component="div"
-                                            sx={{ letterSpacing: 5, flexGrow: 1 }}>Sub Total - </Typography>
-                                        <Box sx={{ display: "flex", direction: "row", alignItems: "right", background: "yellow" }}>
-                                            <Typography variant="h5"
-                                                component="div"
-                                                sx={{ letterSpacing: 5, flexGrow: 1, }}>{orderPrice}</Typography>
-                                        </Box>
-                                    </Box>
-                                    <Box sx={{ display: "flex", direction: "row", mt: 3, ml: 2, background: "yellow" }}>
-                                        <Typography variant="h5"
-                                            component="div"
-                                            sx={{ letterSpacing: 5, flexGrow: 1 }}>Tax - </Typography>
-                                        <Typography variant="h5"
-                                            component="div"
-                                            sx={{ letterSpacing: 5, flexGrow: 1 }}>{orderTax}</Typography>
-                                    </Box>
-                                    <Box sx={{ display: "flex", direction: "row", mt: 3, ml: 2, background: "yellow" }}>
-                                        <Typography variant="h5"
-                                            component="div"
-                                            sx={{ letterSpacing: 5, flexGrow: 1 }}>Shipping - </Typography>
-                                        <Typography variant="h5"
-                                            component="div"
-                                            sx={{ letterSpacing: 5, flexGrow: 1 }}>{orderShipping}</Typography>
-                                    </Box>
-                                    <Divider sx={{ ml: 4, mt: 3, border: 1 }} />
-                                    <Box sx={{ display: "flex", direction: "row", mt: 3, ml: 2 }}>
-                                        <Typography variant="h5"
-                                            component="div"
-                                            sx={{ letterSpacing: 5, flexGrow: 1 }}>Total -</Typography>
-                                        <Typography variant="h5"
-                                            component="div"
-                                            sx={{ letterSpacing: 5, flexGrow: 1 }}>{grandTotal}</Typography>
-                                    </Box>
-                                    <Box sx={{ display: "flex", direction: "row", justifyContent: "center", mt: 3, ml: 5 }}>
-                                    <Link to="/shipping">
-                                        <Button variant="outlined"
-                                            sx={{ background: "black" }}
-                                            >
-                                            <Typography sx={{ letterSpacing: 5, color: "white" }}> Checkout </Typography>
-                                        </Button>
-                                    </Link>
-                                    </Box>
-                                </Grid>
-                            </Box>
-                        </Paper>
+                        <Grid sx={{ mb: 2 }} container direction="row" spacing={0}>
+                            <Grid xs={12} sm={12} md={12} lg={12} item>
+                                <Paper elevation={15} sx={{ width: "100%", mt: 0, mr: 2, border: 1 }}>
+                                    <Box sx={{ display: "flex", direction: "column", minHeight: '41.5vh', margin: 1 }}>
+                                        <Grid xs={12} sm={12} md={12} lg={12} item>
+                                            <Box sx={{ display: "flex", direction: "row", mt: 2, mr: 1, ml: 1, justifyContent: "space-between"}}>
+                                                <Typography variant="h5"
+                                                    component="div"
+                                                    sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                                    Sub Total
+                                                </Typography>
+                                                <Typography variant="h5"
+                                                    component="div"
+                                                    sx={{ letterSpacing: 5 }}>
+                                                    {orderPrice}
+                                                </Typography>
+                                            </Box>
+                                            <Box sx={{ display: "flex", direction: "row", mt: 2, mr: 1, ml: 1, justifyContent: "space-between" }}>
+                                                <Typography variant="h5"
+                                                    component="div"
+                                                    sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                                    Tax
+                                                </Typography>
+                                                <Typography variant="h5"
+                                                    component="div"
+                                                    sx={{ letterSpacing: 5 }}>
+                                                    {orderTax}
+                                                </Typography>
+                                            </Box>
+                                            <Box sx={{ display: "flex", direction: "row", mt: 2, mr: 1, ml: 1, justifyContent: "space-between" }}>
+                                                <Typography variant="h5"
+                                                    component="div"
+                                                    sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                                    Shipping
+                                                </Typography>
+                                                <Typography variant="h5"
+                                                    component="div"
+                                                    sx={{ letterSpacing: 5 }}>
+                                                    {orderShipping}
+                                                </Typography>
+                                            </Box>
+                                            <Divider sx={{ border: 1, mt: 2 }} />
+                                            <Box sx={{ display: "flex", direction: "row", mt: 2, mr: 1, ml: 1, justifyContent: "space-between"}}>
+                                                <Typography variant="h5"
+                                                    component="div"
+                                                    sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                                    Grand Total
+                                                </Typography>
+                                                <Typography variant="h5"
+                                                    component="div"
+                                                    sx={{ letterSpacing: 5 }}>
+                                                    {grandTotal}
+                                                </Typography>
+                                            </Box>
+                                            <Box sx={{ display: "flex", direction: "row", mt: 4, mr: 1, ml: 1, justifyContent: "center" }}>
+                                            <Link to="/login">
+                                                <Button variant="outlined" sx={{ background: "black" }}>
+                                                    <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                                        Complete Order
+                                                    </Typography>
+                                                </Button>
+                                            </Link>
+                                            </Box>
+                                        </Grid>
 
-
+                                    </Box>
+                                </Paper>
+                            </Grid>
+                        </Grid>
 
 
 

@@ -1,30 +1,46 @@
 import React, { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import { Route } from "react-router-dom"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { Home } from "./Home/home"
 import { Cart } from "./orders/cart"
+import { getUserById, getUserPayments } from "./orders/ordermanager"
 import { OrderReview } from "./orders/orderReview"
 import { PaymentDetails } from "./orders/paymentDetails"
-import { ShippingDetails } from "./orders/shippingDetails"
+import { OrderBuilder, ShippingDetails } from "./orders/orderBuilder"
 import { ThankYou } from "./orders/thanks4biz"
 import { Products } from "./products/allProducts"
 import { CartContext } from "./products/cartContext"
 import { ProductDetails } from "./products/productDetail"
 import { UserAccount } from "./userAccount/user"
 
-const cartFromStorage = JSON.parse(localStorage.getItem("cart") || "[]" )
+const cartFromStorage = JSON.parse(localStorage.getItem("cart") || "[]")
 
 export const ApplicationViews = () => {
 
+    
+
+    const [currentPayment, setCurrentPayment] = useState({})
+    const [currentOrder, setCurrentOrder] = useState({})
+
     const [cart, setCart] = useState(cartFromStorage)
+
     
-    
+
+   
+
 
     const productToCart = (product) => {
         setCart([...cart, product])
     }
 
+ 
+
+    
+
+    console.log(currentOrder)
     useEffect(
         () => {
             localStorage.setItem("cart", JSON.stringify(cart))
@@ -32,58 +48,64 @@ export const ApplicationViews = () => {
     )
     console.log(cart)
     return <>
-            <CartContext.Provider value={{
-                    cart,
-                    setCart,
-                    productToCart
-            }}>
+        <CartContext.Provider value={{
+            cart,
+            setCart,
+            productToCart,
+            currentPayment,
+            setCurrentPayment,
+            currentOrder,
+            setCurrentOrder
+        }}>
 
-        <main>
-            <Route exact path="/home">
-                <Home />
-            </Route>
+            <main>
+                <Route exact path="/home">
+                    <Home />
+                </Route>
 
-            <Route exact path="/products/:productId(\d+)">
-                <ProductDetails />
-            </Route>
+                <Route exact path="/products/:productId(\d+)">
+                    <ProductDetails />
+                </Route>
 
-            <Route exact path="/products">
-                <Products />
-            </Route>
+                <Route exact path="/products">
+                    <Products />
+                </Route>
 
-            <Route exact path="/cart">
-                <Cart />
-            </Route>
+                <Route exact path="/cart">
+                    <Cart />
+                </Route>
+                <Route exact path="/shipping">
+                    <OrderBuilder />
+                </Route>
 
-            <Route exact path="/shipping">
-                <ShippingDetails />
-            </Route>
+                <Route exact path="/payment">
+                    <PaymentDetails />
+                </Route>
 
-            <Route exact path="/payment">
-                <PaymentDetails />
-            </Route>
+                <Route exact path="/orderreview">
+                    <OrderReview />
+                </Route>
 
-            <Route exact path="/orderreview">
-                <OrderReview />
-            </Route>
+                <Route exact path="/thankyou">
+                    <ThankYou />
+                </Route>
 
-            <Route exact path="/thankyou">
-                <ThankYou />
-            </Route>
-
-            <Route exact path="/account">
-                <UserAccount />
-            </Route>
+                <Route exact path="/account">
+                    <UserAccount />
+                </Route>
 
 
-            <Route path="/login">
-                <Login />
-            </Route>
 
-            <Route path="/register">
-                <Register />
-            </Route>
-        </main>
+
+
+                <Route path="/login">
+                    <Login />
+                </Route>
+
+                <Route path="/register">
+                    <Register />
+                </Route>
+            </main>
 
         </CartContext.Provider>
     </>
