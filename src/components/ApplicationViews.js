@@ -15,6 +15,7 @@ import { Products } from "./products/allProducts"
 import { CartContext } from "./products/cartContext"
 import { ProductDetails } from "./products/productDetail"
 import { UserAccount } from "./userAccount/user"
+import { getCurrentUser, getUsers } from "./userAccount/userManager"
 
 const cartFromStorage = JSON.parse(localStorage.getItem("cart") || "[]")
 
@@ -24,11 +25,14 @@ export const ApplicationViews = () => {
 
     const [currentPayment, setCurrentPayment] = useState({})
     const [currentOrder, setCurrentOrder] = useState({})
-
+    
+    const [currentUser, setCurrentUser] = useState({})
+    
     const [cart, setCart] = useState(cartFromStorage)
 
     
-
+    
+    
    
 
 
@@ -37,10 +41,14 @@ export const ApplicationViews = () => {
     }
 
  
+    useEffect(
+        () => {
+            getCurrentUser().then(data => setCurrentUser(data))
+        }, []
+    )
+    console.log(currentUser)
 
-    
-
-    console.log(currentOrder)
+  
     useEffect(
         () => {
             localStorage.setItem("cart", JSON.stringify(cart))
@@ -55,7 +63,8 @@ export const ApplicationViews = () => {
             currentPayment,
             setCurrentPayment,
             currentOrder,
-            setCurrentOrder
+            setCurrentOrder,
+            currentUser
         }}>
 
             <main>

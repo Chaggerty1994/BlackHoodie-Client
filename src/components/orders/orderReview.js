@@ -10,7 +10,7 @@ export const OrderReview = () => {
     const { cart, setCart, productToCart, currentPayment, setCurrentPayment, currentOrder, setCurrentOrder } = useContext(CartContext)
     console.log(currentOrder)
     return <>
-        <Box sx={{ minHeight: '70vh', mr: 15, ml: 15, mt: 4, background: "grey" }}>
+        <Box sx={{ minHeight: '70vh', mr: 15, ml: 15, mt: 4 }}>
             <Grid
                 sx={{ mb: 5 }}
                 container
@@ -37,7 +37,7 @@ export const OrderReview = () => {
                             </Grid>
                             <Grid xs={12} sm={12} md={12} lg={12} Item>
                                 <Box sx={{ mt: 2 }}>
-                                    <Typography variant="h4"
+                                    <Typography variant="h6"
                                         component="div"
                                         sx={{ letterSpacing: 5, flexGrow: 1 }}>
                                         {currentOrder.address}
@@ -55,10 +55,29 @@ export const OrderReview = () => {
                             </Grid>
                             <Grid xs={12} sm={12} md={12} lg={12} Item>
                                 <Box sx={{ mt: 2 }}>
+                                    <Typography variant="h6"
+                                        component="div"
+                                        sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                        {currentOrder.user_payment.obscured_num}
+                                    </Typography>
+                                </Box>
+                            </Grid>
+
+                            <Grid xs={12} sm={12} md={12} lg={12} Item>
+                                <Box sx={{ mt: 10 }}>
                                     <Typography variant="h4"
                                         component="div"
                                         sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                        {/* {currentOrder.user_payment.obscured_num} */}
+                                        Exp Date
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                            <Grid xs={12} sm={12} md={12} lg={12} Item>
+                                <Box sx={{ mt: 2 }}>
+                                    <Typography variant="h6"
+                                        component="div"
+                                        sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                        {currentOrder.user_payment.exp_date}
                                     </Typography>
                                 </Box>
                             </Grid>
@@ -81,21 +100,41 @@ export const OrderReview = () => {
                 </Grid>
 
                 <Grid xs={12} sm={12} md={6} lg={6} item>
-                    <Box sx={{ display: "flex", minHeight: "70vh", direction: "row", mt: 1, ml: 3, mr: 3, justifyContent: "left", background: "yellow" }} >
+                    <Box sx={{ display: "flex", minHeight: "70vh", direction: "row", mt: 1, ml: 3, mr: 3, justifyContent: "left" }} >
                         <Grid container spacing={0} direction="row" justifyContent="left" >
-                            {
-                                currentOrder.products.map(prod =>
-                                    <Grid xs={12} sm={12} md={12} lg={12} Item>
-                                        <Box sx={{  background: "green" }}>
+
+                            <Grid xs={12} sm={12} md={12} lg={12} Item>
+                                <Typography variant="h3"
+                                    component="div"
+                                    sx={{ letterSpacing: 5, mt: 2, flexGrow: 1 }}>
+                                    Order Summary
+                                </Typography>
+                                {
+                                    currentOrder.products.map(prod =>
+
+                                        <Box sx={{ mt: 2 }}>
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
                                                 {prod.title}
                                             </Typography>
                                         </Box>
-                                    </Grid>
-                                )
-                            }
+
+                                    )
+                                }
+                                <Box sx={{ display: "flex", direction: "row", mt: 5, mr: 20, justifyContent: "space-between" }}>
+                                            <Typography variant="h6"
+                                                component="div"
+                                                sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                                Order Total
+                                            </Typography>
+                                            <Typography variant="h6"
+                                                component="div"
+                                                sx={{ letterSpacing: 5}}>
+                                                {currentOrder.total}
+                                            </Typography>
+                                </Box>
+                            </Grid>
 
                         </Grid>
 
