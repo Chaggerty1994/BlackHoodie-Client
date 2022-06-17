@@ -1,4 +1,4 @@
-import { Box, Button, Card, Divider, Grid, Paper, TextField, Typography } from "@mui/material"
+import { Box, Button, Card, Divider, Grid, IconButton, Paper, TextField, Typography } from "@mui/material"
 import React, { useContext, useEffect, useState } from "react"
 import { CartContext } from "../products/cartContext"
 import CardActions from '@mui/material/CardActions';
@@ -13,7 +13,7 @@ export const Cart = () => {
     const [orderTax, setOrderTax] = useState(0)
     const [orderShipping, setOrderShipping] = useState(0)
     const [grandTotal, setGrandTotal] = useState(0)
-
+    console.log(localStorage.getItem("auth_token"))
 
     const handlePrice = () => {
         let total = 0;
@@ -117,7 +117,7 @@ export const Cart = () => {
                                 <Paper elevation={15} sx={{ width: "100%", mt: 0, mr: 2, border: 1 }}>
                                     <Box sx={{ display: "flex", direction: "column", minHeight: '41.5vh', margin: 1 }}>
                                         <Grid xs={12} sm={12} md={12} lg={12} item>
-                                            <Box sx={{ display: "flex", direction: "row", mt: 2, mr: 1, ml: 1, justifyContent: "space-between"}}>
+                                            <Box sx={{ display: "flex", direction: "row", mt: 2, mr: 1, ml: 1, justifyContent: "space-between" }}>
                                                 <Typography variant="h5"
                                                     component="div"
                                                     sx={{ letterSpacing: 5, flexGrow: 1 }}>
@@ -154,7 +154,7 @@ export const Cart = () => {
                                                 </Typography>
                                             </Box>
                                             <Divider sx={{ border: 1, mt: 2 }} />
-                                            <Box sx={{ display: "flex", direction: "row", mt: 2, mr: 1, ml: 1, justifyContent: "space-between"}}>
+                                            <Box sx={{ display: "flex", direction: "row", mt: 2, mr: 1, ml: 1, justifyContent: "space-between" }}>
                                                 <Typography variant="h5"
                                                     component="div"
                                                     sx={{ letterSpacing: 5, flexGrow: 1 }}>
@@ -167,13 +167,25 @@ export const Cart = () => {
                                                 </Typography>
                                             </Box>
                                             <Box sx={{ display: "flex", direction: "row", mt: 4, mr: 1, ml: 1, justifyContent: "center" }}>
-                                            <Link to="/login">
-                                                <Button variant="outlined" sx={{ background: "black" }}>
-                                                    <Typography sx={{ letterSpacing: 5, color: "white" }}>
-                                                        Complete Order
-                                                    </Typography>
-                                                </Button>
-                                            </Link>
+                                                {
+                                                    localStorage.getItem("auth_token") ?
+                                                        <Link to="/payment">
+                                                            <Button variant="outlined" sx={{ background: "black" }}>
+                                                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                                                    Complete Order
+                                                                </Typography>
+                                                            </Button>
+                                                        </Link>
+                                                        :
+                                                        
+                                                        <Link to="/login">
+                                                            <Button variant="outlined" sx={{ background: "black" }}>
+                                                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                                                    Complete Order
+                                                                </Typography>
+                                                            </Button>
+                                                        </Link>
+                                                }
                                             </Box>
                                         </Grid>
 

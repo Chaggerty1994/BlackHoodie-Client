@@ -1,9 +1,10 @@
 import { Button, Card, Divider, Grid, IconButton, Typography } from "@mui/material"
 import { Box } from "@mui/system"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getProductById } from "./productManager"
 import HomeIcon from '@mui/icons-material/Home';
+import { CartContext } from "./cartContext";
 
 
 export const ProductDetails = () => {
@@ -18,7 +19,8 @@ export const ProductDetails = () => {
         }
     )
     console.log(selectedProduct)
-
+        
+    const { cart, setCart, productToCart } = useContext(CartContext)
     return <>
         <Box sx={{ display: "flex", minHeight: '70vh', mr: 10, ml: 10, mt: 4 }}>
             <Grid sx={{ mb: 5 }} container direction="row" spacing={0}>
@@ -85,14 +87,10 @@ export const ProductDetails = () => {
                         </Box>
 
                         <Box sx={{ display: "flex", justifyContent: "left", gap: 5, alignItems: "center", mt: 8 }} >
-                            <Button variant="outlined" sx={{ background: "black" }}>
-                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
-                                    Buy Now
-                                </Typography>
-                            </Button>
+                          
 
                             <Button variant="outlined" sx={{ background: "black" }}>
-                                <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                <Typography onClick={() => { productToCart(selectedProduct) }} sx={{ letterSpacing: 5, color: "white" }}>
                                     Add 2 Cart
                                 </Typography>
                             </Button>

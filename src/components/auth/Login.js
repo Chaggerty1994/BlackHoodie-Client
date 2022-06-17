@@ -1,3 +1,4 @@
+import { Paper } from "@mui/material"
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
@@ -35,6 +36,11 @@ export const Login = () => {
         <div>Username or password was not valid.</div>
         <button onClick={e => invalidDialog.current.close()}>Close</button>
       </dialog>
+      
+      <div>
+      <Paper className="accountinfo"
+            elevation={12}
+            sx={{border: 1, mt: 8, ml: 43, minHeight: "50vh", width: "50%"}}>
       <section>
         <form onSubmit={handleLogin}>
           <fieldset>
@@ -53,6 +59,8 @@ export const Login = () => {
       <section>
         <Link to="/register">Not a member yet?</Link>
       </section>
+      </Paper>
+      </div>
     </main>
   )
 }

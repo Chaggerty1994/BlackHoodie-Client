@@ -98,6 +98,7 @@ export const OrderBuilder = () => {
                                     createOrder(order)
                                     .then(data => {setCurrentOrder(data)})
                                         .then(() => history.push("/orderreview"))
+                                        console.log(currentOrder)
                                 }}>
                                 <Typography sx={{ letterSpacing: 5, color: "white" }}> Save & continue</Typography>
                             </Button>

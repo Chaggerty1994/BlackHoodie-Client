@@ -14,11 +14,8 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import HomeIcon from '@mui/icons-material/Home';
 import "./NavBar.css"
-import { Pages } from "@mui/icons-material";
-import { createTheme } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
 
-import { ThemeProvider } from "@emotion/react";
-import { black } from '@mui/material/colors';
 
 
 // #212121
@@ -45,9 +42,19 @@ export const NavBar = () => {
             </Typography>
 
             <Box sx={{ mr: 5, display: "flex", gap: 1, alignItems: "center"}}  >
+
+            
+
               <Link to="/home">
                 <IconButton sx={{color: "white"}}>
                   <HomeIcon sx={{fontSize: "30px"}}   />
+                </IconButton>
+
+              </Link>
+
+              <Link to="/products">
+                <IconButton sx={{color: "white"}}>
+                  <SearchIcon sx={{fontSize: "30px"}}   />
                 </IconButton>
 
               </Link>
@@ -65,7 +72,7 @@ export const NavBar = () => {
               </Link>
 
               {
-                localStorage.getItem("auth_token") !== null ?
+                localStorage.getItem("auth_token") ?
                   <IconButton sx={{color: "white"}} onClick={() => {
                     localStorage.removeItem("auth_token")
                     history.push({ pathname: "/home" })
@@ -73,13 +80,13 @@ export const NavBar = () => {
                     <LogoutIcon sx={{fontSize: "30px"}}    />
                   </IconButton>
                   :
-                  <>
+                  
                   <Link to="/login">
                     <IconButton sx={{color: "white"}}>
                       <LoginIcon sx={{fontSize: "30px"}}    />
                     </IconButton>
                   </Link>
-                  </>
+                  
               }
             </Box>
             
