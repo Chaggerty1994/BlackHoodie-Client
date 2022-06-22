@@ -16,6 +16,8 @@ import { CartContext } from "./products/cartContext"
 import { ProductDetails } from "./products/productDetail"
 import { UserAccount } from "./userAccount/user"
 import { getCurrentUser, getUsers } from "./userAccount/userManager"
+import { OrderDetails } from "./orders/orderDetails"
+import { changeTask, getSizes } from "./products/productManager"
 
 const cartFromStorage = JSON.parse(localStorage.getItem("cart") || "[]")
 
@@ -30,9 +32,11 @@ export const ApplicationViews = () => {
     
     const [cart, setCart] = useState(cartFromStorage)
 
+    const [sizes, setSizes] = useState([])
+
     
     
-    
+   
    
 
 
@@ -46,7 +50,14 @@ export const ApplicationViews = () => {
             getCurrentUser().then(data => setCurrentUser(data))
         }, []
     )
-    console.log(currentUser)
+    
+
+    useEffect(
+        () => {
+            getSizes().then(data => setSizes(data))
+        }, []
+    )
+        console.log(sizes)
 
   
     useEffect(
@@ -64,7 +75,10 @@ export const ApplicationViews = () => {
             setCurrentPayment,
             currentOrder,
             setCurrentOrder,
-            currentUser
+            currentUser,
+            setCurrentUser,
+            sizes, 
+            cartFromStorage
         }}>
 
             <main>
@@ -103,6 +117,9 @@ export const ApplicationViews = () => {
                     <UserAccount />
                 </Route>
 
+                <Route exact path="/orders/:orderId(\d+)">
+                    <OrderDetails />
+                </Route>
 
 
 

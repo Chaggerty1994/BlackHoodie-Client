@@ -1,16 +1,30 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Box, Button, Grid, Typography } from "@mui/material";
-import { TextField } from '@mui/material';
+import { Box, Button, Divider, Grid, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { CartContext } from "../products/cartContext"
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { getOrderById } from "./ordermanager";
 
-export const OrderReview = () => {
-    const history = useHistory()
-    const { cart, setCart, productToCart, currentPayment, setCurrentPayment, currentOrder, setCurrentOrder } = useContext(CartContext)
-    console.log(currentOrder)
+
+export const OrderDetails = () => {
+
+    const [selectedOrder, setSelectedOrder] = useState({})
+    const { orderId } = useParams()
+   
+    useEffect(
+        () => {
+            getOrderById(orderId).then((data) => { setSelectedOrder(data) })
+        }, []
+    )
+
+    
+
+    console.log(selectedOrder)
+
+    const { cart, setCart, productToCart, currentPayment, setCurrentPayment, currentOrder, setCurrentOrder, currentUser } = useContext(CartContext)
     return <>
-        <Box sx={{ minHeight: '70vh', mr: 15, ml: 15, mt: 4 }}>
+         <Box sx={{ minHeight: '70vh', mr: 15, ml: 15, mt: 4 }}>
             <Grid
                 sx={{ mb: 5 }}
                 container
@@ -40,7 +54,7 @@ export const OrderReview = () => {
                                     <Typography variant="h6"
                                         component="div"
                                         sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                        {currentOrder.address}
+                                        {selectedOrder.address}
                                     </Typography>
                                 </Box>
                             </Grid>
@@ -58,7 +72,7 @@ export const OrderReview = () => {
                                     <Typography variant="h6"
                                         component="div"
                                         sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                        {currentOrder.user_payment.obscured_num}
+                                        {selectedOrder.user_payment?.obscured_num}
                                     </Typography>
                                 </Box>
                             </Grid>
@@ -77,7 +91,7 @@ export const OrderReview = () => {
                                     <Typography variant="h6"
                                         component="div"
                                         sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                        {currentOrder.user_payment.exp_date}
+                                        {selectedOrder.user_payment?.exp_date}
                                     </Typography>
                                 </Box>
                             </Grid>
@@ -87,13 +101,7 @@ export const OrderReview = () => {
 
 
 
-                            <Box sx={{ display: "flex", justifyContent: "center", gap: 10, alignItems: "center", mt: 2 }} >
-                                <Typography variant="h5"
-                                    component="div"
-                                    sx={{ letterSpacing: 5, flexGrow: 1 }}>
-
-                                </Typography>
-                            </Box>
+                            
                         </Grid>
                     </Box>
 
@@ -110,26 +118,14 @@ export const OrderReview = () => {
                                     Order Summary
                                 </Typography>
                                 {
-                                    currentOrder.products.map(prod =>
+                                    selectedOrder.products?.map(prod =>
 
-                                        <Box sx={{ mt: 2, display: "flex", direction: "row" }}>
+                                        <Box sx={{ mt: 2 }}>
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
                                                 {prod.title}
                                             </Typography>
-                                            {/* <Typography variant="h6"
-                                                component="div"
-                                                sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                                Size:{prod.size?.size}
-                                            </Typography> */}
-                                            {/* <Box sx={{background: "green"}}>
-                                            <Typography variant="h6"
-                                                component="div"
-                                                sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                                {prod.size?.size}
-                                            </Typography>
-                                            </Box> */}
                                         </Box>
 
                                     )
@@ -143,7 +139,7 @@ export const OrderReview = () => {
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5}}>
-                                                {currentOrder.total}
+                                               $ {selectedOrder.total}
                                             </Typography>
                                 </Box>
                             </Grid>
@@ -153,17 +149,7 @@ export const OrderReview = () => {
                     </Box>
                 </Grid>
 
-                <Grid xs={12} sm={12} md={12} lg={12} item>
-                    <Box sx={{ display: "flex", mt: 4, ml: 3, justifyContent: "center", alignItems: "center" }} >
-                        <Link to="/thankyou">
-                            <Button variant="outlined"
-                                sx={{ background: "black" }}
-                                onClick={() => {}}>
-                                <Typography sx={{ letterSpacing: 5, color: "white" }}> Order Now</Typography>
-                            </Button>
-                        </Link>
-                    </Box>
-                </Grid>
+               
             </Grid>
 
         </Box>

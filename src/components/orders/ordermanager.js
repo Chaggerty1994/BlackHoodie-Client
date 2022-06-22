@@ -7,6 +7,15 @@ export const getOrders = () => {
         .then(response => response.json())
 }
 
+export const getOrderById = (orderId) => {
+    return fetch(`http://localhost:8000/orders/${orderId}`, {
+    headers:{
+        "Authorization": `Token ${localStorage.getItem("auth_token")}`
+    }
+})
+    .then(res => res.json())
+}
+
 export const getUserPayments = () => {
     return fetch("http://localhost:8000/userpayments", {
         headers:{

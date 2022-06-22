@@ -61,9 +61,9 @@ export const FeaturedProduct = () => {
                                     sx={{ background: "black", fontColor: "white", fontSize: "30px", opacity: "100%" }}
                                     title={`${product.title} - $${product.price}`}
                                     actionIcon={
-                                        <IconButton onClick={() => { productToCart(product) }}>
+                                        <Button onClick={() => { productToCart(product) }}>
                                             <LocalMallIcon sx={{ color: 'white', mr: 2 }} />
-                                        </IconButton>
+                                        </Button>
                                     }
                                     position='bottom' />
                             </ImageListItem>

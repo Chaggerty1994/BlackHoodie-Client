@@ -1,10 +1,11 @@
-import { Box, Button, Card, Divider, Grid, IconButton, Paper, TextField, Typography } from "@mui/material"
+import { Box, Button, Card, Divider, FormControl, Grid, IconButton, InputLabel, MenuItem, Paper, Select, TextField, Typography } from "@mui/material"
 import React, { useContext, useEffect, useState } from "react"
 import { CartContext } from "../products/cartContext"
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Link } from "react-router-dom";
+import { getSizes } from "../products/productManager";
 
 
 export const Cart = () => {
@@ -13,6 +14,7 @@ export const Cart = () => {
     const [orderTax, setOrderTax] = useState(0)
     const [orderShipping, setOrderShipping] = useState(0)
     const [grandTotal, setGrandTotal] = useState(0)
+
     console.log(localStorage.getItem("auth_token"))
 
     const handlePrice = () => {
@@ -46,17 +48,26 @@ export const Cart = () => {
         handlePrice()
     }
 
+
+
     useEffect(() => { handlePrice() })
     useEffect(() => { handleTax() })
     useEffect(() => { handleShipping() })
     useEffect(() => { handleGrandTotal() })
+
+    // useEffect(
+    //     () => {
+    //         getSizes().then(data => setSizes(data))
+    //     }, []
+    // )
 
     console.log(orderPrice)
 
 
 
 
-    const { cart, setCart, productToCart } = useContext(CartContext)
+    const { cart, setCart, productToCart, sizes, setSizes, cartFromStorage } = useContext(CartContext)
+    console.log(sizes)
     console.log(cart)
     return <>
         <Box sx={{ display: "flex", minHeight: '70vh', mr: 10, ml: 10, mt: 4 }}>
@@ -80,21 +91,57 @@ export const Cart = () => {
                                             <Box sx={{ mr: 2, ml: 2, mt: 2, mb: 2, }} component="img" src={`http://localhost:8000${cartItem.image_path}`} />
                                             <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
                                                 <CardContent>
-                                                    <Typography gutterBottom variant="h4" component="div" sx={{ letterSpacing: 5 }}>
+                                                    
+                                                    <Typography gutterBottom variant="h4" component="div" sx={{ letterSpacing: 5 , color: "black"}}>
                                                         {cartItem.title}
                                                     </Typography>
-                                                    <Typography variant="h5" sx={{ letterSpacing: 5 }}>
-                                                        $ {cartItem.price}
-                                                    </Typography>
+                                                   
+                                                    <Box sx={{ display: "flex", direction: "row", width: "100%" }}>
+                                                        <Typography variant="h5" sx={{ letterSpacing: 5 }}>
+                                                            $ {cartItem.price}
+                                                        </Typography>
+
+                                                    </Box>
                                                 </CardContent>
                                                 <CardActions>
 
-                                                    <Box sx={{ display: "flex", direction: "row", justifyContent: "right", alignItems: "center" }}>
+                                                    <Box sx={{ display: "flex", direction: "row", minWidth: "20vw", justifyContent: "right", alignItems: "center" }}>
+                                                        <FormControl sx={{ minWidth: "30%" }}>
+                                                            <InputLabel id="select-label">{cartItem.size?.size}</InputLabel>
+                                                            <Select
+
+                                                                labelId="size"
+                                                                id="size-select"
+                                                                // value={cartItem.size?.id}
+                                                                label="productSize"
+                                                                onChange={(evt) => {
+                                                                    const copy = { ...cartItem }
+                                                                    copy.size = evt.target.value
+                                                                    const index = cart.findIndex(item => item.id === cartItem.id)
+                                                                    const cartCopy = [...cart]
+                                                                    cartCopy[index] = copy
+                                                                    setCart(cartCopy)
+                                                                    console.log(cartCopy)
+                                                                }} 
+                                                            >
+                                                                
+                                                                {
+                                                                    sizes.map(
+                                                                        size => (
+                                                                            <MenuItem value={size}>{size.size}</MenuItem>
+                                                                        )
+                                                                    )
+                                                                }
+
+                                                            </Select>
+                                                        </FormControl>
+                                
                                                         <Button variant="outlined"
-                                                            sx={{ background: "black", mr: 4 }}
+                                                            sx={{ background: "black", mr: 4, ml: 4 }}
                                                             onClick={() => { handleRemove(cartItem.id) }}>
                                                             <Typography sx={{ letterSpacing: 5, color: "white" }}> Remove </Typography>
                                                         </Button>
+
 
                                                     </Box>
                                                 </CardActions>
@@ -177,7 +224,7 @@ export const Cart = () => {
                                                             </Button>
                                                         </Link>
                                                         :
-                                                        
+
                                                         <Link to="/login">
                                                             <Button variant="outlined" sx={{ background: "black" }}>
                                                                 <Typography sx={{ letterSpacing: 5, color: "white" }}>
