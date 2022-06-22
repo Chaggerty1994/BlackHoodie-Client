@@ -89,7 +89,7 @@ export const OrderBuilder = () => {
                                     evt.preventDefault()
 
                                     const order = {
-                                        products: cart.map(item => item.id),
+                                        product_size: cart.map(item => item.id),
                                         address: newOrder.address,
                                         userPaymentId: newOrder.userPaymentId
 

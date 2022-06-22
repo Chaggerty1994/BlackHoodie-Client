@@ -58,7 +58,7 @@ export const OrderReview = () => {
                                     <Typography variant="h6"
                                         component="div"
                                         sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                        {currentOrder.user_payment.obscured_num}
+                                        {/* {currentOrder.user_payment.obscured_num} */}
                                     </Typography>
                                 </Box>
                             </Grid>
@@ -77,7 +77,7 @@ export const OrderReview = () => {
                                     <Typography variant="h6"
                                         component="div"
                                         sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                        {currentOrder.user_payment.exp_date}
+                                        {/* {currentOrder.user_payment.exp_date} */}
                                     </Typography>
                                 </Box>
                             </Grid>
@@ -118,11 +118,11 @@ export const OrderReview = () => {
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
                                                 {prod.title}
                                             </Typography>
-                                            {/* <Typography variant="h6"
+                                            <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
                                                 Size:{prod.size?.size}
-                                            </Typography> */}
+                                            </Typography>
                                             {/* <Box sx={{background: "green"}}>
                                             <Typography variant="h6"
                                                 component="div"
