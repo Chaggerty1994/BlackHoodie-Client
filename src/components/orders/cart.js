@@ -43,7 +43,8 @@ export const Cart = () => {
     }
 
     const handleRemove = (id) => {
-        const arr = productSize.filter((item) => (item.id !== id))
+        const arr = productSize.filter((item) => (item.product?.id !== id))
+        console.log(arr)
         setProductSize(arr)
         handlePrice()
     }
@@ -137,7 +138,7 @@ export const Cart = () => {
                                 
                                                         <Button variant="outlined"
                                                             sx={{ background: "black", mr: 4, ml: 4 }}
-                                                            onClick={() => { handleRemove(cartItem.id) }}>
+                                                            onClick={() => { handleRemove(cartItem.product?.id) }}>
                                                             <Typography sx={{ letterSpacing: 5, color: "white" }}> Remove </Typography>
                                                         </Button>
 

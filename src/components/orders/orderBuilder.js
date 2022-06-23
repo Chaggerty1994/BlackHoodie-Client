@@ -82,8 +82,8 @@ export const OrderBuilder = () => {
 
                 <Grid xs={12} sm={12} md={12} lg={12} item>
                     <Box sx={{ display: "flex", mt: 8, ml: 3, justifyContent: "left", alignItems: "center" }} >
-                        <Link to="/payment">
-                            <Button variant="outlined"
+                        
+                            <Button href="/payment" variant="outlined"
                                 sx={{ background: "black" }}
                                 onClick={(evt) => {
                                     evt.preventDefault()
@@ -102,7 +102,7 @@ export const OrderBuilder = () => {
                                 }}>
                                 <Typography sx={{ letterSpacing: 5, color: "white" }}> Save & continue</Typography>
                             </Button>
-                        </Link>
+                        
                     </Box>
                 </Grid>
             </Grid>

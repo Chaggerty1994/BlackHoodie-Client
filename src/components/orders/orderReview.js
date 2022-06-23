@@ -112,33 +112,41 @@ export const OrderReview = () => {
                                 {
                                     currentOrder.product_size.map(prod => 
 
-                                        <Box sx={{ mt: 2, display: "flex", direction: "row", minWidth: "20vw", justifyContent: "space-between" }}>
+                                        <Box sx={{ mt: 5, display: "flex", direction: "row" }}>
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
                                                 {prod.product?.title}
                                             </Typography>
+                                            <Box sx={{display: "flex", direction: "row", minWidth: "10vw", justifyContent: "space-between"}}>
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                                Size:{prod.size?.size}
+                                                Size:
                                             </Typography>
-                                           
+                                            <Typography variant="h6"
+                                                component="div"
+                                                sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                                {prod.size?.size}
+                                            </Typography>
+                                           </Box>
                                         </Box>
 
                                       )
                                 }
-                                <Box sx={{ display: "flex", direction: "row", mt: 5, mr: 20, justifyContent: "space-between" }}>
+                                <Box sx={{ display: "flex", direction: "row", mt: 5, mr: 0}}>
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
                                                 Order Total
                                             </Typography>
+                                            <Box sx={{display: "flex", direction: "row", minWidth: "10vw", ml: 10, justifyContent: "space-between"}}>
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5}}>
-                                                {currentOrder.total}
+                                                $ {currentOrder.total}
                                             </Typography>
+                                            </Box>
                                 </Box>
                             </Grid>
 
@@ -149,13 +157,13 @@ export const OrderReview = () => {
 
                 <Grid xs={12} sm={12} md={12} lg={12} item>
                     <Box sx={{ display: "flex", mt: 4, ml: 3, justifyContent: "center", alignItems: "center" }} >
-                        <Link to="/thankyou">
-                            <Button variant="outlined"
+                        
+                            <Button href="/thankyou" variant="outlined"
                                 sx={{ background: "black" }}
                                 onClick={() => {}}>
                                 <Typography sx={{ letterSpacing: 5, color: "white" }}> Order Now</Typography>
                             </Button>
-                        </Link>
+                       
                     </Box>
                 </Grid>
             </Grid>

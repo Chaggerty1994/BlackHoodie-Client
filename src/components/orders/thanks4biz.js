@@ -24,12 +24,12 @@ export const ThankYou = () => {
 
                 <Grid xs={12} sm={12} md={12} lg={12} item>
                     <Box sx={{ display: "flex", mt: 15, justifyContent: "center", alignItems: "center" }}>
-                        <Link to="/home">
-                            <Button variant="outlined"
+                        
+                            <Button href="/home" variant="outlined"
                                 sx={{ background: "black" }}>
                                 <Typography sx={{ letterSpacing: 5, color: "white" }}> Return 2 Home</Typography>
                             </Button>
-                        </Link>
+                      
                     </Box>
                 </Grid>
 

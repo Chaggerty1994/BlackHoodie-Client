@@ -72,8 +72,8 @@ export const PaymentDetails = () => {
 
                 <Grid xs={12} sm={12} md={12} lg={12} item>
                     <Box sx={{ display: "flex", mt: 8, ml: 3, justifyContent: "left", alignItems: "center" }} >
-                        <Link to="/orderreview">
-                            <Button variant="outlined"
+                        
+                            <Button href="/orderreview" variant="outlined"
                                 sx={{ background: "black" }}
                                 onClick={(evt) => {
                                     evt.preventDefault()
@@ -92,7 +92,7 @@ export const PaymentDetails = () => {
                                 }>
                             <Typography sx={{ letterSpacing: 5, color: "white" }}> save & continue</Typography>
                         </Button>
-                    </Link>
+                   
                 </Box>
             </Grid>
         </Grid>
