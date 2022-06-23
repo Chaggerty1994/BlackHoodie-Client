@@ -10,7 +10,7 @@ export const OrderReview = () => {
     const { cart, setCart, productToCart, currentPayment, setCurrentPayment, currentOrder, setCurrentOrder } = useContext(CartContext)
     console.log(currentOrder)
     return <>
-        <Box sx={{ minHeight: '70vh', mr: 15, ml: 15, mt: 4, background: "grey" }}>
+        <Box sx={{ minHeight: '70vh', mr: 15, ml: 15, mt: 4 }}>
             <Grid
                 sx={{ mb: 5 }}
                 container
@@ -110,9 +110,9 @@ export const OrderReview = () => {
                                     Order Summary
                                 </Typography>
                                 {
-                                    currentOrder.product_size.map(prod =>
+                                    currentOrder.product_size.map(prod => 
 
-                                        <Box sx={{ mt: 2, display: "flex", direction: "row" }}>
+                                        <Box sx={{ mt: 2, display: "flex", direction: "row", minWidth: "20vw", justifyContent: "space-between" }}>
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
@@ -126,7 +126,7 @@ export const OrderReview = () => {
                                            
                                         </Box>
 
-                                    )
+                                      )
                                 }
                                 <Box sx={{ display: "flex", direction: "row", mt: 5, mr: 20, justifyContent: "space-between" }}>
                                             <Typography variant="h6"

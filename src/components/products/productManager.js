@@ -16,11 +16,7 @@ export const changeProduct = (productObject) => {
 }
 
 export const getCategories = () => {
-    return fetch("http://localhost:8000/categories", {
-        headers: {
-            "Authorization": `Token ${localStorage.getItem("auth_token")}`
-        }
-    })
+    return fetch("http://localhost:8000/categories")
         .then(response => response.json())
 }
 

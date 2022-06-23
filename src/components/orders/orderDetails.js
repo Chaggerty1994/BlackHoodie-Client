@@ -117,19 +117,31 @@ export const OrderDetails = () => {
                                     sx={{ letterSpacing: 5, mt: 2, flexGrow: 1 }}>
                                     Order Summary
                                 </Typography>
-                                {/* {
-                                    selectedOrder.products?.map(prod =>
+                                {
+                                    selectedOrder.product_size?.map(prod =>
 
-                                        <Box sx={{ mt: 2 }}>
+                                        <Box sx={{ mt: 2, display: "flex", direction: "row" }}>
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                                {prod.title}
+                                                {prod.product?.title}
                                             </Typography>
+                                            <Box sx={{display: "flex", direction: "row", minWidth: "20vw", justifyContent: "space-between"}}>
+                                            <Typography variant="h6"
+                                                component="div"
+                                                sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                                Size:
+                                            </Typography>
+                                            <Typography variant="h6"
+                                                component="div"
+                                                sx={{ letterSpacing: 5, flexGrow: 1 }}>
+                                                {prod.size?.size}
+                                            </Typography>
+                                            </Box>
                                         </Box>
 
                                     )
-                                } */}
+                                }
                                 <Box sx={{ display: "flex", direction: "row", mt: 5, mr: 20, justifyContent: "space-between" }}>
                                             <Typography variant="h6"
                                                 component="div"
