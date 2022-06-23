@@ -37,7 +37,7 @@ export const Products = () => {
     }, [])
 
     console.log(categories)
-    const { cart, setCart, productToCart } = useContext(CartContext)
+    const { cart, setCart, productToCart, handleProductSize } = useContext(CartContext)
 
     return <>
         <Box sx={{ display: "flex", minHeight: '80vh', mr: 5, ml: 5, mt: 4 }}>
@@ -92,7 +92,7 @@ export const Products = () => {
                                     sx={{ letterSpacing: 5, background: "black", fontColor: "white", fontSize: "30px", opacity: "100%" }}
                                     title={`${product.title} - $${product.price}`}
                                     actionIcon={
-                                        <IconButton onClick={() => { productToCart(product) }}>
+                                        <IconButton onClick={() => { handleProductSize(product, 0) }}>
                                             <LocalMallIcon sx={{ color: 'white', mr: 2 }} />
                                         </IconButton>
                                     }

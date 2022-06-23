@@ -10,6 +10,7 @@ import { CartContext } from "./cartContext";
 export const ProductDetails = () => {
 
     const [selectedProduct, setSelectedProduct] = useState({})
+    const [selectedSize, setSelectedSize] = useState({})
 
     const { productId } = useParams()
 
@@ -19,14 +20,12 @@ export const ProductDetails = () => {
         }, []
     )
     console.log(selectedProduct)
+    
 
-   const handleProductChange = (sizeObject) => {
-    const copy = {...selectedProduct}
-    copy.size = sizeObject
-    setSelectedProduct(copy)
-   }
-
-    const { cart, setCart, productToCart, sizes } = useContext(CartContext)
+ 
+        
+    const { cart, setCart, productToCart, sizes, productSize, setProductSize, handleProductSize } = useContext(CartContext)
+    console.log(productSize)
     return <>
         <Box sx={{ display: "flex", minHeight: '70vh', mr: 10, ml: 10, mt: 4 }}>
             <Grid sx={{ mb: 5 }} container direction="row" spacing={0}>
@@ -63,7 +62,7 @@ export const ProductDetails = () => {
 
                             {
                                 sizes.map(size => (
-                                    <Button variant="outlined" value={size.id} sx={{ background: "black" }} onClick={(evt) => {handleProductChange(size)}}>
+                                    <Button variant="outlined" value={size.id} sx={{ background: "black" }} onClick={(evt) => {setSelectedSize(size)}}>
                                         <Typography sx={{ letterSpacing: 5, color: "white" }}>
                                             {size.size}
                                         </Typography>
@@ -80,7 +79,7 @@ export const ProductDetails = () => {
 
 
                             <Button variant="outlined" sx={{ background: "black" }}>
-                                <Typography onClick={() => { productToCart(selectedProduct) }} sx={{ letterSpacing: 5, color: "white" }}>
+                                <Typography onClick={() => { handleProductSize(selectedProduct, selectedSize) }} sx={{ letterSpacing: 5, color: "white" }}>
                                     Add 2 Cart
                                 </Typography>
                             </Button>

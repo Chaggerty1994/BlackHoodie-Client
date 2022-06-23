@@ -10,10 +10,10 @@ export const OrderBuilder = () => {
 
     // adding to my new order
     const history = useHistory()
-    const { cart, setCart, productToCart, currentPayment, setCurrentPayment, currentOrder, setCurrentOrder  } = useContext(CartContext)
+    const { cart, setCart, productToCart, currentPayment, setCurrentPayment, currentOrder, setCurrentOrder, productSize  } = useContext(CartContext)
 
     const [newOrder, setNewOrder] = useState({
-        products: [],
+        product_size: [],
         address: "",
         userPaymentId: 0
     })
@@ -25,9 +25,9 @@ export const OrderBuilder = () => {
         setNewOrder(copy)
     }
 
-    const products = (event) => {
+    const orderProductSize = (event) => {
         const copy = {...newOrder}
-        copy.products = cart
+        copy.product_size = productSize
         setNewOrder(copy)
     }
 
@@ -42,7 +42,7 @@ export const OrderBuilder = () => {
     
     useEffect(
         () => {
-            products()
+            orderProductSize()
             paymentId()
         }, []
     )
@@ -89,7 +89,7 @@ export const OrderBuilder = () => {
                                     evt.preventDefault()
 
                                     const order = {
-                                        product_size: cart.map(item => item.id),
+                                        product_size: productSize,
                                         address: newOrder.address,
                                         userPaymentId: newOrder.userPaymentId
 

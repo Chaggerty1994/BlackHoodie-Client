@@ -19,7 +19,7 @@ export const Cart = () => {
 
     const handlePrice = () => {
         let total = 0;
-        const price = cart.map((item) => { total += item.price });
+        const price = productSize.map((item) => { total += item.product?.price });
         setOrderPrice(total)
     }
 
@@ -27,14 +27,14 @@ export const Cart = () => {
         let tax = (orderPrice * 4) / 100;
         setOrderTax(tax)
 
-        console.log(orderTax)
+        
     }
 
     const handleShipping = () => {
         let shipping = (orderPrice * 10) / 100;
         setOrderShipping(shipping)
 
-        console.log(orderTax)
+        
     }
 
     const handleGrandTotal = () => {
@@ -43,8 +43,8 @@ export const Cart = () => {
     }
 
     const handleRemove = (id) => {
-        const arr = cart.filter((item) => (item.id !== id))
-        setCart(arr)
+        const arr = productSize.filter((item) => (item.id !== id))
+        setProductSize(arr)
         handlePrice()
     }
 
@@ -61,14 +61,13 @@ export const Cart = () => {
     //     }, []
     // )
 
-    console.log(orderPrice)
+   
 
 
 
 
-    const { cart, setCart, productToCart, sizes, setSizes, cartFromStorage } = useContext(CartContext)
-    console.log(sizes)
-    console.log(cart)
+    const { cart, setCart, productToCart, sizes, setSizes, cartFromStorage, productSize, setProductSize } = useContext(CartContext)
+  
     return <>
         <Box sx={{ display: "flex", minHeight: '70vh', mr: 10, ml: 10, mt: 4 }}>
             <Grid sx={{ mb: 2 }} container direction="row" spacing={0}>
@@ -84,21 +83,21 @@ export const Cart = () => {
                     <Paper elevation={10} sx={{ display: "flex", minHeight: "63vh", maxHeight: "63vh", overflow: "auto", mt: 0, mr: 2 }}>
                         <Grid container direction="row" spacing={0}>
                             {
-                                cart.map(cartItem => (
+                                productSize.map((cartItem, index) => (
                                     <>
                                         <Card sx={{ display: "flex", direction: "row", height: "20vh", width: "99%", mb: 1, border: 1, flexGrow: 1 }}>
 
-                                            <Box sx={{ mr: 2, ml: 2, mt: 2, mb: 2, }} component="img" src={`http://localhost:8000${cartItem.image_path}`} />
+                                            <Box sx={{ mr: 2, ml: 2, mt: 2, mb: 2, }} component="img" src={`http://localhost:8000${cartItem.product?.image_path}`} />
                                             <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
                                                 <CardContent>
                                                     
                                                     <Typography gutterBottom variant="h4" component="div" sx={{ letterSpacing: 5 , color: "black"}}>
-                                                        {cartItem.title}
+                                                        {cartItem.product?.title}
                                                     </Typography>
                                                    
                                                     <Box sx={{ display: "flex", direction: "row", width: "100%" }}>
                                                         <Typography variant="h5" sx={{ letterSpacing: 5 }}>
-                                                            $ {cartItem.price}
+                                                            $ {cartItem.product?.price}
                                                         </Typography>
 
                                                     </Box>
@@ -116,11 +115,11 @@ export const Cart = () => {
                                                                 label="productSize"
                                                                 onChange={(evt) => {
                                                                     const copy = { ...cartItem }
+                                                                    console.log(cartItem)
                                                                     copy.size = evt.target.value
-                                                                    const index = cart.findIndex(item => item.id === cartItem.id)
-                                                                    const cartCopy = [...cart]
+                                                                    const cartCopy = [...productSize]
                                                                     cartCopy[index] = copy
-                                                                    setCart(cartCopy)
+                                                                    setProductSize(cartCopy)
                                                                     console.log(cartCopy)
                                                                 }} 
                                                             >

@@ -34,14 +34,26 @@ export const ApplicationViews = () => {
 
     const [sizes, setSizes] = useState([])
 
-    
+    const [productSize, setProductSize] = useState([
+        
+    ])
+
+    const handleProductSize = (selectedProduct, selectedSize) => {
+        const copy = [...productSize]
+        const productS = {
+            product: selectedProduct,
+            size: selectedSize
+        }
+        copy.push(productS)
+        setProductSize(copy)
+       }
     
    
    
 
 
-    const productToCart = (product) => {
-        setCart([...cart, product])
+    const productToCart = (productSize) => {
+        setCart([...cart, productSize])
     }
 
  
@@ -57,15 +69,15 @@ export const ApplicationViews = () => {
             getSizes().then(data => setSizes(data))
         }, []
     )
-        console.log(sizes)
+        console.log(cart)
 
   
     useEffect(
         () => {
-            localStorage.setItem("cart", JSON.stringify(cart))
-        }, [cart]
+            localStorage.setItem("cart", JSON.stringify(productSize))
+        }, [productSize]
     )
-    console.log(cart)
+    console.log(productSize)
     return <>
         <CartContext.Provider value={{
             cart,
@@ -78,7 +90,10 @@ export const ApplicationViews = () => {
             currentUser,
             setCurrentUser,
             sizes, 
-            cartFromStorage
+            cartFromStorage,
+            productSize,
+            setProductSize,
+            handleProductSize
         }}>
 
             <main>
@@ -97,6 +112,7 @@ export const ApplicationViews = () => {
                 <Route exact path="/cart">
                     <Cart />
                 </Route>
+
                 <Route exact path="/shipping">
                     <OrderBuilder />
                 </Route>
@@ -120,9 +136,6 @@ export const ApplicationViews = () => {
                 <Route exact path="/orders/:orderId(\d+)">
                     <OrderDetails />
                 </Route>
-
-
-
 
                 <Route path="/login">
                     <Login />

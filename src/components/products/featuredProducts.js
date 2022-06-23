@@ -22,7 +22,7 @@ export const FeaturedProduct = () => {
     }, [])
     console.log(products)
 
-    const { cart, setCart, productToCart } = useContext(CartContext)
+    const { cart, setCart, productToCart, handleProductSize } = useContext(CartContext)
 
     return <>
         <Box sx={{ minHeight: '60vh', mr: 15, ml: 15, mt: 4 }}>
@@ -61,7 +61,7 @@ export const FeaturedProduct = () => {
                                     sx={{ background: "black", fontColor: "white", fontSize: "30px", opacity: "100%" }}
                                     title={`${product.title} - $${product.price}`}
                                     actionIcon={
-                                        <Button onClick={() => { productToCart(product) }}>
+                                        <Button onClick={() => { handleProductSize(product, 0) }}>
                                             <LocalMallIcon sx={{ color: 'white', mr: 2 }} />
                                         </Button>
                                     }
@@ -75,12 +75,12 @@ export const FeaturedProduct = () => {
             </Box>
             <Grid xs={12} sm={12} md={12} lg={12} item>
                 <Box sx={{ display: "flex", mt: 5, justifyContent: "center", alignItems: "center" }}>
-                    <Link to="/products">
-                        <Button variant="outlined"
+                    
+                        <Button href="/products" variant="outlined"
                             sx={{ background: "black" }}>
                             <Typography sx={{ letterSpacing: 5, color: "white" }}> All Designs</Typography>
                         </Button>
-                    </Link>
+                   
                 </Box>
             </Grid>
         </Box>

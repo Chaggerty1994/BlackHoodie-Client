@@ -18,7 +18,7 @@ export const OrderDetails = () => {
         }, []
     )
 
-    
+
 
     console.log(selectedOrder)
 
@@ -117,7 +117,7 @@ export const OrderDetails = () => {
                                     sx={{ letterSpacing: 5, mt: 2, flexGrow: 1 }}>
                                     Order Summary
                                 </Typography>
-                                {
+                                {/* {
                                     selectedOrder.products?.map(prod =>
 
                                         <Box sx={{ mt: 2 }}>
@@ -129,7 +129,7 @@ export const OrderDetails = () => {
                                         </Box>
 
                                     )
-                                }
+                                } */}
                                 <Box sx={{ display: "flex", direction: "row", mt: 5, mr: 20, justifyContent: "space-between" }}>
                                             <Typography variant="h6"
                                                 component="div"

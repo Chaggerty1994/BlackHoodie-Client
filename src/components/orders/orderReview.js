@@ -10,7 +10,7 @@ export const OrderReview = () => {
     const { cart, setCart, productToCart, currentPayment, setCurrentPayment, currentOrder, setCurrentOrder } = useContext(CartContext)
     console.log(currentOrder)
     return <>
-        <Box sx={{ minHeight: '70vh', mr: 15, ml: 15, mt: 4 }}>
+        <Box sx={{ minHeight: '70vh', mr: 15, ml: 15, mt: 4, background: "grey" }}>
             <Grid
                 sx={{ mb: 5 }}
                 container
@@ -58,7 +58,7 @@ export const OrderReview = () => {
                                     <Typography variant="h6"
                                         component="div"
                                         sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                        {/* {currentOrder.user_payment.obscured_num} */}
+                                        {currentOrder.user_payment?.obscured_num}
                                     </Typography>
                                 </Box>
                             </Grid>
@@ -77,7 +77,7 @@ export const OrderReview = () => {
                                     <Typography variant="h6"
                                         component="div"
                                         sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                        {/* {currentOrder.user_payment.exp_date} */}
+                                        {currentOrder.user_payment?.exp_date}
                                     </Typography>
                                 </Box>
                             </Grid>
@@ -110,26 +110,20 @@ export const OrderReview = () => {
                                     Order Summary
                                 </Typography>
                                 {
-                                    currentOrder.products.map(prod =>
+                                    currentOrder.product_size.map(prod =>
 
                                         <Box sx={{ mt: 2, display: "flex", direction: "row" }}>
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                                {prod.title}
+                                                {prod.product?.title}
                                             </Typography>
                                             <Typography variant="h6"
                                                 component="div"
                                                 sx={{ letterSpacing: 5, flexGrow: 1 }}>
                                                 Size:{prod.size?.size}
                                             </Typography>
-                                            {/* <Box sx={{background: "green"}}>
-                                            <Typography variant="h6"
-                                                component="div"
-                                                sx={{ letterSpacing: 5, flexGrow: 1 }}>
-                                                {prod.size?.size}
-                                            </Typography>
-                                            </Box> */}
+                                           
                                         </Box>
 
                                     )

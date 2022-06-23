@@ -32,7 +32,7 @@ export const NavBar = () => {
     <Box sx={{ flexGrow: 1}} >
       <AppBar position="static" elevation={15} style={{backgroundColor: "black"} }>
         <Toolbar >
-          <Box className="nav" sx={{display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%"}}>
+          <Box className="nav" sx={{display: "flex", alignItems: "center", width: "100%"}}>
 
             <Typography variant="h6"
               component="div"
