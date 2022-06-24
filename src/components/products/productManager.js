@@ -26,11 +26,7 @@ export const getSizes = () => {
 }
 
 export const getFilteredProducts = (catId) => {
-    return fetch(`http://localhost:8000/products?category=${catId}`, {
-        headers: {
-            "Authorization": `Token ${localStorage.getItem("auth_token")}`
-        }
-    })
+    return fetch(`http://localhost:8000/products?category=${catId}`)
         .then(response => response.json())
 }
 

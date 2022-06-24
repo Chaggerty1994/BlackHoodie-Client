@@ -1,4 +1,4 @@
-import { Button, Card, Divider, Grid, IconButton, Typography } from "@mui/material"
+import { Alert, Button, Card, Divider, Grid, IconButton, Snackbar, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import React, { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
@@ -12,6 +12,20 @@ export const ProductDetails = () => {
     const [selectedProduct, setSelectedProduct] = useState({})
     const [selectedSize, setSelectedSize] = useState({})
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
     const { productId } = useParams()
 
     useEffect(
@@ -20,14 +34,24 @@ export const ProductDetails = () => {
         }, []
     )
     console.log(selectedProduct)
-    
 
- 
-        
+
+
+
     const { cart, setCart, productToCart, sizes, productSize, setProductSize, handleProductSize } = useContext(CartContext)
     console.log(productSize)
     return <>
+       
         <Box sx={{ display: "flex", minHeight: '70vh', mr: 10, ml: 10, mt: 4 }}>
+        <Snackbar open={open} anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+        }} 
+        autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                Added 2 Cart!
+            </Alert>
+        </Snackbar>
             <Grid sx={{ mb: 5 }} container direction="row" spacing={0}>
 
                 <Grid item>
@@ -62,8 +86,8 @@ export const ProductDetails = () => {
 
                             {
                                 sizes.map(size => (
-                                    <Button variant="outlined" value={size.id} sx={{ background: "black" }} onClick={(evt) => {setSelectedSize(size)}}>
-                                        <Typography sx={{ letterSpacing: 5, color: "white" }}>
+                                    <Button variant="outlined" value={size.id} sx={{ background: selectedSize !== size ? "black" : "white" }} onClick={(evt) => { setSelectedSize(size) }}>
+                                        <Typography sx={{ letterSpacing: 5, color: selectedSize !== size ? "white" : "black" }}>
                                             {size.size}
                                         </Typography>
                                     </Button>
@@ -79,7 +103,10 @@ export const ProductDetails = () => {
 
 
                             <Button variant="outlined" sx={{ background: "black" }}>
-                                <Typography onClick={() => { handleProductSize(selectedProduct, selectedSize) }} sx={{ letterSpacing: 5, color: "white" }}>
+                                <Typography onClick={() => {
+                                    handleProductSize(selectedProduct, selectedSize)
+                                    handleClick()
+                                }} sx={{ letterSpacing: 5, color: "white" }}>
                                     Add 2 Cart
                                 </Typography>
                             </Button>
