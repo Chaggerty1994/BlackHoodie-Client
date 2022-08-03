@@ -9,6 +9,7 @@
   - To use React, and Material UI to build the website true to its original design and be fully functional
   - To use and gain a deeper understanding of CSS grid and Material UI's image list components
   - Build a functioning API with Python / Django to manage the data and requests for the application 
+  - gain a deeper understanding of and properly execute many to many relationships with my database
 
 ### Wire-Frames:
 
